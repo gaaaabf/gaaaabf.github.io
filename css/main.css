@@ -1,7 +1,6 @@
 /* === Git Dropdown Styles === */
 .git-dropdown {
   position: absolute;
-  top: calc(100% + 10px);
   left: 70%;
   background: #222;
   color: #fff;

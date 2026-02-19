@@ -32,12 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const html = await response.text();
         // Create a hidden container
         const container = document.createElement('div');
+        container.className = 'pdf-export';
         container.style.position = 'fixed';
         container.style.left = '-9999px';
         container.innerHTML = html;
         document.body.appendChild(container);
         // Try to find main CV content
         let content = container.querySelector('.cv-container') || container.querySelector('body') || container;
+        // Add .pdf-export to main content as well (for specificity)
+        if (content) content.classList.add('pdf-export');
         // Convert to PDF
         html2pdf().set({
           margin: 0.5,
