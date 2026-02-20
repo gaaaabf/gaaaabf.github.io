@@ -8,71 +8,78 @@ document.addEventListener('DOMContentLoaded', () => {
   dropdown.className = 'git-dropdown';
   dropdown.style.display = 'none';
 
-  // List of CV files
-  const cvsFiles = [
-    { name: 'QA Automation CV', file: 'cv_automation_qa.html' },
-    { name: 'Drupal Dev CV', file: 'cv_drupal_dev.html' }
-  ];
-
-  cvsFiles.forEach(cv => {
-    const item = document.createElement('div');
-    item.className = 'git-dropdown-item';
-    item.textContent = cv.name;
-    item.addEventListener('click', async () => {
-      dropdown.style.display = 'none';
-      // Fetch HTML file
-      try {
-        // Wait for html2pdf to be loaded
-        if (typeof html2pdf === 'undefined') {
-          alert('PDF library not loaded.');
-          return;
+  // Dynamically fetch CVS files from the directory
+  async function loadCVSFiles() {
+    // List of files from server (hardcoded for now, but can be fetched via API or server endpoint)
+    const files = [
+      'cv_automation_qa.html',
+      'cv_drupal_dev.html',
+      'cv_drupal_dev_full.html'
+    ];
+    // Remove existing items
+    dropdown.innerHTML = '';
+    files.forEach(file => {
+      // Display name (remove extension, replace underscores)
+      const name = file.replace('.html', '').replace(/_/g, ' ').replace('cv ', '').replace('drupal', 'Drupal').replace('qa', 'QA').replace('dev', 'Dev').replace('full', 'Full').replace('automation', 'Automation').replace('CV', 'CV').replace(/\s+/g, ' ').trim();
+      const item = document.createElement('div');
+      item.className = 'git-dropdown-item';
+      item.textContent = name || file;
+      item.addEventListener('click', async () => {
+        dropdown.style.display = 'none';
+        // Fetch HTML file
+        try {
+          if (typeof html2pdf === 'undefined') {
+            alert('PDF library not loaded.');
+            return;
+          }
+          const response = await fetch(`cvs/${file}`);
+          if (!response.ok) throw new Error('File not found');
+          const html = await response.text();
+          // Create a hidden container
+          const container = document.createElement('div');
+          container.className = 'pdf-export';
+          container.style.position = 'fixed';
+          container.style.left = '-9999px';
+          container.innerHTML = html;
+          document.body.appendChild(container);
+          let content = container.querySelector('.cv-container') || container.querySelector('body') || container;
+          if (content) content.classList.add('pdf-export');
+          html2pdf().set({
+            margin: 0.5,
+            filename: name + '.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+          }).from(content).save().then(() => {
+            document.body.removeChild(container);
+          }).catch(err => {
+            document.body.removeChild(container);
+            alert('PDF generation failed.');
+            console.error('html2pdf error:', err);
+          });
+        } catch (err) {
+          alert('Failed to generate PDF.');
+          console.error('Fetch or conversion error:', err);
         }
-        const response = await fetch(`cvs/${cv.file}`);
-        if (!response.ok) throw new Error('File not found');
-        const html = await response.text();
-        // Create a hidden container
-        const container = document.createElement('div');
-        container.className = 'pdf-export';
-        container.style.position = 'fixed';
-        container.style.left = '-9999px';
-        container.innerHTML = html;
-        document.body.appendChild(container);
-        // Try to find main CV content
-        let content = container.querySelector('.cv-container') || container.querySelector('body') || container;
-        // Add .pdf-export to main content as well (for specificity)
-        if (content) content.classList.add('pdf-export');
-        // Convert to PDF
-        html2pdf().set({
-          margin: 0.5,
-          filename: cv.name + '.pdf',
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2 },
-          jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-        }).from(content).save().then(() => {
-          document.body.removeChild(container);
-        }).catch(err => {
-          document.body.removeChild(container);
-          alert('PDF generation failed.');
-          console.error('html2pdf error:', err);
-        });
-      } catch (err) {
-        alert('Failed to generate PDF.');
-        console.error('Fetch or conversion error:', err);
-      }
+      });
+      dropdown.appendChild(item);
     });
-    dropdown.appendChild(item);
-  });
+  }
 
   // Position dropdown relative to icon
   gitIcon.style.position = 'relative';
   gitIcon.parentElement.style.position = 'relative';
   gitIcon.parentElement.appendChild(dropdown);
 
-  gitIcon.addEventListener('click', (e) => {
+  gitIcon.addEventListener('click', async (e) => {
     e.stopPropagation();
-    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    if (dropdown.style.display === 'none') {
+      await loadCVSFiles();
+      dropdown.style.display = 'block';
+    } else {
+      dropdown.style.display = 'none';
+    }
   });
-  // Hide dropdown on outside click
   document.addEventListener('click', () => {
     dropdown.style.display = 'none';
   });
