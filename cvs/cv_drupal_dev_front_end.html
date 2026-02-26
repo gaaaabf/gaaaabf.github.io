@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabriel Fernandez - CV</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: #ffffff;
+      color: #2c3e50;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .cv-container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 0;
+    }
+
+    .cv-header {
+      text-align: center;
+      padding: 30px 0;
+      border-bottom: 3px solid #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    .cv-header h1 {
+      font-size: 2.2rem;
+      color: #2c3e50;
+      margin-bottom: 8px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .cv-header > div > p:first-of-type {
+      font-size: 1.1rem;
+      color: #34495e;
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+
+    .cv-header p {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .cv-header a {
+      color: #2980b9;
+      text-decoration: none;
+    }
+
+    .cv-header a:hover {
+      text-decoration: underline;
+    }
+
+    .cv-section {
+      margin-bottom: 18px;
+    }
+
+    .cv-section h2 {
+      color: #2c3e50;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #34495e;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cv-section > p {
+      margin-bottom: 10px;
+      text-align: justify;
+      font-size: 0.95rem;
+    }
+
+    .cv-list {
+      list-style: disc;
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    .cv-list li {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .cv-list li::marker {
+      color: #34495e;
+    }
+
+    .cv-job {
+      margin-bottom: 22px;
+      page-break-inside: avoid;
+    }
+
+
+    .cv-job-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 3px;
+    }
+    .cv-job-separator {
+      color: #7f8c8d;
+      font-size: 1.1em;
+      margin: 0 2px;
+      font-weight: 400;
+      user-select: none;
+    }
+    .cv-job-title {
+      font-weight: 700;
+      color: #2c3e50;
+      font-size: 1.05rem;
+      margin-bottom: 0;
+      margin-right: 8px;
+    }
+    .cv-job-company {
+      color: #2980b9;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+
+    .cv-job-date {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      font-style: italic;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .cv-education {
+      margin-bottom: 20px;
+      page-break-inside: avoid;
+    }
+
+    .cv-edu-degree {
+      font-weight: 700;
+      color: #2c3e50;
+      font-size: 1.05rem;
+      margin-bottom: 3px;
+    }
+
+    .cv-edu-school {
+      color: #2980b9;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .cv-edu-date {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      font-style: italic;
+      margin-bottom: 3px;
+      display: block;
+    }
+
+    .cv-skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .cv-skill {
+      background: #ecf0f1;
+      color: #2c3e50;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      border-left: 3px solid #34495e;
+      font-weight: 500;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: #fff !important;
+        color: #2c3e50 !important;
+      }
+      .cv-container {
+        max-width: 100%;
+        box-shadow: none !important;
+        background: #fff !important;
+      }
+      .cv-header {
+        page-break-after: avoid;
+        border-bottom: 3px solid #2c3e50 !important;
+        background: #fff !important;
+      }
+      .cv-section {
+        background: #fff !important;
+        color: #2c3e50 !important;
+        margin-bottom: 10px !important;
+      }
+      .cv-section:last-child {
+        margin-bottom: 0 !important;
+      }
+      .cv-section h2 {
+        color: #2c3e50 !important;
+        border-bottom: 2px solid #34495e !important;
+        background: #fff !important;
+      }
+      .cv-skill {
+        background: #ecf0f1 !important;
+        color: #2c3e50 !important;
+        border-left: 3px solid #34495e !important;
+      }
+      a, a:visited {
+        color: #2980b9 !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      .cv-header h1 {
+        font-size: 1.8rem;
+      }
+      .cv-section h2 {
+        font-size: 1.2rem;
+      }
+      .cv-skills {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cv-container">
+    <div class="cv-header">
+      <div>
+        <h1>Gabriel G. Fernandez</h1>
+        <p>Web Developer | Frontend Developer</p>
+        <p>
+          <strong>Email:</strong> gabz.fernandez96@gmail.com<br>
+          <strong>Location:</strong> Waverly, NSW, 2024, Australia<br>
+          <strong>Phone:</strong> +61 402-807-869<br>
+          <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/gfernandez96/" target="_blank">gfernandez96</a><br>
+          <strong>Working rights:</strong> Restricted work rights
+        </p>
+      </div>
+    </div>
+    <div class="cv-section">
+      <h2>Profile</h2>
+      <p>Acquia-certified Web Developer with over 5 years of experience building and maintaining scalable, high-performance web applications across frontend and backend technologies. Experienced in AWS server setup and infrastructure management, with a strong focus on automation testing and performance optimization to ensure system reliability and deployment quality.</p>
+    </div>
+    <div class="cv-section">
+      <h2>Accomplishments</h2>
+      <ul class="cv-list">
+        <li>Developed pixel-by-pixel visual regression test automation using CasperJS to compare live website screenshots against wireframes, ensuring UI accuracy and design consistency.</li>
+        <li>Built multiple PIM-driven websites and implemented automated schedulers to fetch JSON data and seamlessly import it into the website database.</li>
+        <li>Implemented an automated performance testing framework triggered after deployments, capturing logs and benchmarking results against previous versions to detect regressions and maintain system stability.</li>
+      </ul>
+    </div>
+    <div class="cv-section">
+      <h2>Work Experience</h2>
+      <div class="cv-job">
+        <div class="cv-job-header">
+          <div class="cv-job-title">Systems Manager (Part Time)</div>
+          <span class="cv-job-separator">&middot;</span>
+          <div class="cv-job-company">Advance Cleanup AU</div>
+        </div>
+        <div class="cv-job-date">September 2025 - Present</div>
+        <ul class="cv-list">
+          <li>Reviewed company systems and business processes, recommending and implementing cost-saving technologies.</li>
+          <li>Redesigned the company website to a more modern, responsive user experience, improving engagement and usability.</li>
+          <li>Developed new website features and centralized information to streamline data access for staff and management.</li>
+        </ul>
+      </div>
+      <div class="cv-job">
+        <div class="cv-job-header">
+          <div class="cv-job-title">Storage Keeper (Part Time)</div>
+          <span class="cv-job-separator">&middot;</span>
+          <div class="cv-job-company">Advance Cleanup AU</div>
+        </div>
+        <div class="cv-job-date">January 2025 - September 2025</div>
+        <ul class="cv-list">
+          <li>Receive, inspect, and record incoming goods to ensure accuracy and quality.</li>
+          <li>Maintain accurate inventory records and update stock levels regularly.</li>
+          <li>Organize items efficiently to support safe and easy access.</li>
+          <li>Prepare, pick, and dispatch orders in a timely and accurate manner.</li>
+        </ul>
+      </div>
+      <div class="cv-job">
+        <div class="cv-job-header">
+          <div class="cv-job-title">Freelance Web Developer</div>
+        </div>
+        <div class="cv-job-date">September 2024 - Present</div>
+        <ul class="cv-list">
+          <li>Independently maintained and updated Drupal websites (versions 7, 8, 9, and 10) for small businesses, non-profits, and individual clients.</li>
+          <li>Handled full-cycle support including site audits, bug fixes, performance optimization, and security updates.</li>
+        </ul>
+      </div>
+      <div class="cv-job">
+        <div class="cv-job-header">
+          <div class="cv-job-title">Drupal Developer</div>
+          <span class="cv-job-separator">&middot;</span>
+          <div class="cv-job-company">Promet Source</div>
+        </div>
+        <div class="cv-job-date">May 2023 - September 2024</div>
+        <ul class="cv-list">
+          <li>Developed and maintained responsive, accessible websites using Drupal CMS (versions 8, 9, 10, and 11), working across both frontend and backend.</li>
+          <li>Customized themes with SASS and Twig, and built reusable components to support consistent UI/UX across projects.</li>
+          <li>Delivered scalable solutions in Agile environments, collaborating closely with cross-functional teams including designers, testers, and project managers.</li>
+          <li>Built and extended custom Drupal modules, ensuring optimal performance, security, and maintainability.</li>
+          <li>Performed complex data migrations using Drupal Migrate API and contributed to upgrading legacy systems.</li>
+          <li>Ensured compliance with web accessibility standards (WCAG), improving inclusivity and usability.</li>
+          <li>Handled deployment processes and environment configurations across Acquia, Pantheon, and AWS hosting platforms.</li>
+          <li>Conducted code reviews, debugging, and performance tuning to maintain high standards of code quality and application stability.</li>
+        </ul>
+      </div>
+      <div class="cv-job">
+        <div class="cv-job-header">
+          <div class="cv-job-title">Drupal Developer</div>
+          <span class="cv-job-separator">&middot;</span>
+          <div class="cv-job-company">ACRET PH</div>
+        </div>
+        <div class="cv-job-date">June 2019 - March 2023</div>
+        <ul class="cv-list">
+          <li>Developed and maintained responsive, accessible websites using Drupal CMS (versions 7, 8, and 9), working across both frontend and backend.</li>
+          <li>Customized themes with SASS and Twig, and built reusable components to support consistent UI/UX across projects.</li>
+          <li>Delivered scalable solutions in Agile environments, collaborating closely with cross-functional teams including designers, testers, and project managers.</li>
+          <li>Built and extended custom Drupal modules, ensuring optimal performance, security, and maintainability.</li>
+          <li>Performed complex data migrations using Drupal Migrate API and contributed to upgrading legacy systems.</li>
+          <li>Handled deployment processes and environment configurations across Acquia, Pantheon, and AWS hosting platforms.</li>
+          <li>Conducted code reviews, debugging, and performance tuning to maintain high standards of code quality and application stability.</li>
+        </ul>
+      </div>
+      <div class="cv-job">
+        <div class="cv-job-header">
+          <div class="cv-job-title">Automation QA Intern</div>
+          <span class="cv-job-separator">&middot;</span>
+          <div class="cv-job-company">LEGALMATCH PHILIPPINES</div>
+        </div>
+        <div class="cv-job-date">August 2018 - February 2019</div>
+        <ul class="cv-list">
+          <li>Created automated test scripts using JavaScript and Selenium to streamline regression testing for booking and account creation features.</li>
+          <li>Improved test coverage and reduced manual testing time by implementing reusable automation frameworks.</li>
+        </ul>
+      </div>
+      <div class="cv-job">
+        <div class="cv-job-header">
+          <div class="cv-job-title">Service Support Officer</div>
+          <span class="cv-job-separator">&middot;</span>
+          <div class="cv-job-company">Metric Calls Services MCS</div>
+        </div>
+        <div class="cv-job-date">March 2018 - July 2018</div>
+        <ul class="cv-list">
+          <li>Responsible for delivering exemplary customer interaction through phone, email or chat</li>
+          <li>Provide customers with product and service information</li>
+          <li>Identify, research and resolve customer issues and general inquiries</li>
+        </ul>
+      </div>
+            <div class="cv-job">
+              <div class="cv-job-header">
+                <div class="cv-job-title">Customer Service Representative</div>
+                <span class="cv-job-separator">&middot;</span>
+                <div class="cv-job-company">Shift</div>
+              </div>
+              <div class="cv-job-date">August 2017 - February 2018</div>
+              <ul class="cv-list">
+                <li>Handled customer service inquiries and incoming calls</li>
+                <li>Resolved complaints and provided accurate information</li>
+                <li>Delivered chat and technical support to ensure satisfaction</li>
+              </ul>
+            </div>
+    </div>
+    <div class="cv-section">
+      <h2>Education</h2>
+      <div class="cv-education">
+        <div class="cv-edu-degree">Advanced Diploma of Information Technology</div>
+        <div class="cv-edu-school">Rockford College</div>
+        <div class="cv-edu-date">2024 - Present</div>
+        <div class="cv-edu-school">3/633 Princes Hwy, Rockdale NSW 2216, Australia</div>
+      </div>
+      <div class="cv-education">
+        <div class="cv-edu-degree">Bachelor of Science in Information and Communications</div>
+        <div class="cv-edu-school">University of San Carlos - Talamaban Campus</div>
+        <div class="cv-edu-date">2013 - 2019</div>
+        <div class="cv-edu-school">Sitio Nasipit, Brgy, Cebu City, Philippines</div>
+      </div>
+      <div class="cv-education">
+        <div class="cv-edu-degree">Secondary</div>
+        <div class="cv-edu-school">University of San Carlos - North Campus</div>
+        <div class="cv-edu-date">2009 - 2013</div>
+        <div class="cv-edu-school">General Maxilom Ave, Cebu City, 6000 Cebu, Philippines</div>
+      </div>
+      <div class="cv-education">
+        <div class="cv-edu-degree">Primary</div>
+        <div class="cv-edu-school">BRIGHT Academy</div>
+        <div class="cv-edu-date">2003 - 2009</div>
+        <div class="cv-edu-school">Gov. M. Cuenco Ave, Cebu City, 6000 Cebu, Philippines</div>
+      </div>
+    </div>
+    <div class="cv-section">
+      <h2>Skills & Certifications</h2>
+      <ul class="cv-list">
+        <li><strong>Certifications:</strong> Acquia Certified Developer - Drupal 9, Acquia Certified Site Builder - Drupal 9</li>
+        <li><strong>Productivity & Tools:</strong> Microsoft Word, Excel & PowerPoint, Jira</li>
+        <li><strong>Programming Languages:</strong> PHP, Java, C</li>
+        <li><strong>Web Technologies:</strong> HTML5, CSS, JavaScript, jQuery, Ajax, Node.js, React JS</li>
+        <li><strong>Automation & Testing:</strong> Web scrapping & automation testing (Puppeteer)</li>
+        <li><strong>Frameworks:</strong> CodeIgniter, Laravel, Symfony</li>
+        <li><strong>CMS:</strong> Wordpress, Drupal 7-10</li>
+        <li><strong>Database:</strong> MySQL, Database Design, PhpMyAdmin, MySQL Workbench</li>
+        <li><strong>Cloud & OS:</strong> Amazon Web Services (AWS), Mac/Linux/Windows OS</li>
+        <li><strong>Version Control & DevOps:</strong> Git, Docker, VMware, Virtual Box, Jenkins</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
